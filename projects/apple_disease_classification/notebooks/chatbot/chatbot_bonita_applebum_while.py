@@ -143,19 +143,18 @@ def replaceResponse(response):
 
 def chat():
     
-    print("Start talking with Botnita Applebum.\nAsk here anything about apples!\n\ntype -quit- to stop\n")
-    while True: # omdat Pieter het spannend wil houden anders,
-    # while not (input().lower() in ["quit", "exit", "stop"]):
+    print("Start talking with Botnita Applebum.\n Ask her anything about apples.\n\n(type quit to stop)\n")
+    # while True: # omdat Pieter het spannend wil houden anders,
+    while not (input().lower() in ["quit", "exit", "stop"]):
         inp = input("You: ")
-        if inp.lower() == "quit":
-            print("This terminal will self-destruct in 5, 4, 3 ...")
-            break
-        if inp.lower() == "exit":
-            print("Thank you for flying with Pink Lady airlines! Goodbye.")
-            break
-        if inp.lower() == "stop":
-            print("Stop, collaborate and listen...")
-            break
+        
+        while (input().lower() in ["quit", "exit", "stop"]):
+            if inp.lower() == "quit":
+                break
+            if inp.lower() == "exit":
+                break
+            if inp.lower() == "stop":
+                break
 
         results = model.predict([bag_of_words(inp, words)])
         results_index = numpy.argmax(results)
