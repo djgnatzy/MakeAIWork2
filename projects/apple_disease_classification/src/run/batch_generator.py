@@ -7,8 +7,8 @@ import random
 
 def getBatch():
 
-    origin = '../data/AQL_Data_in_Use/'
-    target = '../src/data/batch_03/'
+    origin = 'C:/MakeAIWork2/projects/apple_disease_classification/data/AQL_Data_in_Use/'
+    target = 'C:/MakeAIWork2/projects/apple_disease_classification/src/data/batch_01/'
 
     files = os.listdir(origin)
 
