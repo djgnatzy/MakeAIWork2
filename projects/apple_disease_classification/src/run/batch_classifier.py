@@ -1,26 +1,33 @@
 #!/usr/bin/env python
 
 # DEFINE IMPORTS HERE
-# from .label_predictor import getLabels
+import label_predictor as lp
 
-sampleBatch = 80
 
-blotchApple = 1    #statistics[0]    
-appleScore = 79      #statistics[1]
-rotApple = 0        #statistics[2]
-scabApple = 0 #statistics[3] 
+# sampleBatch = lp.sampleBatch
+# statistics = lp.statistics
+  
+# print("xSB value: ", sampleBatch, "yST value:", statistics)
+
+# sampleBatch = 80
+
+blotchApple = lp.statistics[0]    
+appleScore = lp.statistics[1]
+rotApple = lp.statistics[2]
+scabApple = lp.statistics[3] 
 rejectedApple = int(blotchApple) + int(rotApple) + int(scabApple)
 
-healthyPercentage = round(appleScore / (sampleBatch) * 100)
-blotchPercentage = round(blotchApple / (sampleBatch) * 100)
-rotPercentage = round(rotApple / (sampleBatch) * 100)
-scabPercentage = round(scabApple / (sampleBatch) * 100)
+healthyPercentage = round(appleScore / (lp.sampleBatch) * 100)
+blotchPercentage = round(blotchApple / (lp.sampleBatch) * 100)
+rotPercentage = round(rotApple / (lp.sampleBatch) * 100)
+scabPercentage = round(scabApple / (lp.sampleBatch) * 100)
 rejectedPercentage = round(blotchPercentage + rotPercentage + scabPercentage)
+
 
 
 def getAQLClass(): 
     
-    if sampleBatch != 80:
+    if lp.sampleBatch != 80:
     
         print ("A batch of exactly 80 apples is required for a correct quality control")
         
@@ -37,7 +44,7 @@ def getAQLClass():
          
         print(f'\nThe batch has been qualified as: {status}\n')
                 
-        print (f'The total batch of {sampleBatch} apples consists of:\n'
+        print (f'The total batch of {lp.sampleBatch} apples consists of:\n'
         f'Healthy apples:    {appleScore}    ({healthyPercentage}%)\n'
         f'Blotched apples:   {blotchApple}    ({blotchPercentage}%)\n'
         f'Rotten apples:     {rotApple}    ({rotPercentage}%)\n'
