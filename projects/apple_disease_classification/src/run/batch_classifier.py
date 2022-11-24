@@ -4,13 +4,6 @@
 import label_predictor as lp
 
 
-# sampleBatch = lp.sampleBatch
-# statistics = lp.statistics
-  
-# print("xSB value: ", sampleBatch, "yST value:", statistics)
-
-# sampleBatch = 80
-
 blotchApple = lp.statistics[0]    
 appleScore = lp.statistics[1]
 rotApple = lp.statistics[2]
@@ -22,7 +15,6 @@ blotchPercentage = round(blotchApple / (lp.sampleBatch) * 100)
 rotPercentage = round(rotApple / (lp.sampleBatch) * 100)
 scabPercentage = round(scabApple / (lp.sampleBatch) * 100)
 rejectedPercentage = round(blotchPercentage + rotPercentage + scabPercentage)
-
 
 
 def getAQLClass(): 
@@ -48,17 +40,19 @@ def getAQLClass():
         f'Healthy apples:    {appleScore}    ({healthyPercentage}%)\n'
         f'Blotched apples:   {blotchApple}    ({blotchPercentage}%)\n'
         f'Rotten apples:     {rotApple}    ({rotPercentage}%)\n'
-        f'Scabbed apples:    {scabApple}    ({scabPercentage}%)\n')    
+        f'Scabbed apples:    {scabApple}    ({scabPercentage}%)\n') 
         
         print(f'The total rejected percentage is {rejectedPercentage}%, which is a total amount of', rejectedApple, 'apples.\n')
-        # break    
+        
+        return status, lp.sampleBatch, blotchApple, appleScore, rotApple, scabApple, rejectedApple, healthyPercentage, blotchPercentage, rotPercentage, rejectedPercentage, scabPercentage
 
+
+status, lp.sampleBatch, blotchApple, appleScore, rotApple, scabApple, rejectedApple, healthyPercentage, blotchPercentage, rotPercentage, rejectedPercentage, scabPercentage = getAQLClass()
 
 # IMPLEMENT RUNNABLE CODE INSIDE THIS MAIN 
 def main():
     pass
     
-
 
 # DO NOT IMPLEMENT ANYTHING HERE
 if __name__ == "__main__":
