@@ -54,6 +54,7 @@ status, lp.sampleBatch, blotchApple, appleScore, rotApple, scabApple, rejectedAp
 def main():
     getAQLClass()  
 
+    # print statements are not visible when file is imported to chatbot
     print(f'\nThe batch has been qualified as: {status}\n')
                 
     print (f'The total batch of {lp.sampleBatch} apples consists of:\n'
