@@ -1,35 +1,30 @@
 from sentence_transformers import SentenceTransformer, util
-
-# import aql.py
+import batch_classifier as bc
  
 model = SentenceTransformer('all-MiniLM-L6-v2') 
 
-# retrieve from AQL
 
-sampleBatch = 80
+sampleBatch = bc.lp.sampleBatch 
 
-appleScore = 75
-blotchApple = 1
-rotApple = 1
-scabApple = 3
-rejectedApple = 5
+appleScore = bc.appleScore
+blotchApple = bc.blotchApple
+rotApple = bc.rotApple
+scabApple = bc.scabApple
+rejectedApple = bc.rejectedApple
 
-healthyPercentage = 93.5
-blotchPercentage = 1.25
-rotPercentage = 1.25
-scabPercentage = 2.5
-rejectedPercentage = 5
+healthyPercentage = bc.healthyPercentage
+blotchPercentage = bc.blotchPercentage
+rotPercentage = bc.rotPercentage
+scabPercentage = bc.scabPercentage
+rejectedPercentage = bc.rejectedPercentage
 
-classOne = "Class 1"
-classTwo = "Class 2" 
-classThree = "Class 3"
-classRej = "Rejected"
+status = bc.status
 
 sentencesOptimized = [
-                      f"This batch has been classified as {classOne}.",
-                      f"This batch has been classified as {classTwo}.",
-                      f"This batch has been classified as {classThree}.",
-                      f"This batch has been classified as {classRej}.",
+                      f"This batch has been classified as {status}.",
+                      f"This batch has been classified as {status}.",
+                      f"This batch has been classified as {status}.",
+                      f"This batch has been classified as {status}.",
                       "The batch has been rejected.",
                       "The batch is completely unsuitable and will be composted.",
                       f"The batch contains {appleScore} healthy apples, this is {healthyPercentage}% of the total batch.",
@@ -43,14 +38,14 @@ sentencesOptimized = [
                       f"The complete batch consist of {sampleBatch} apples."
                      ]
 
-print("A conversation with Apple Classifying chatbot: Botnita Applebum")  
+print("\nA conversation with Apple Classifying chatbot: Botnita Applebum")  
 
 def chatSbert(): 
     
     questions = 0
     
     while questions < 3:
-        query_embedding = input("Botnita Applebum: What would you like to know regarding the tested batch of apples?")
+        query_embedding = input("\nBotnita Applebum: What would you like to know regarding the tested batch of apples?")
         
         print("\nYou             :", query_embedding)
         
@@ -66,8 +61,14 @@ def chatSbert():
         
     print("\nBotnita Applebum: Those are all the questions I can answer today, see you tomorrow!\n"
           "\n                  And remember: An apple a day, keeps the doctor away!\n"
-          "                  (unless it is rotten, blotched or scabbed)")  
-    
-chatSbert() 
+          "                  (unless it is rotten, blotched or scabbed)\n")  
 
 
+# IMPLEMENT RUNNABLE CODE INSIDE THIS MAIN 
+def main():
+    chatSbert()  
+
+
+# DO NOT IMPLEMENT ANYTHING HERE
+if __name__ == "__main__":
+    main()
