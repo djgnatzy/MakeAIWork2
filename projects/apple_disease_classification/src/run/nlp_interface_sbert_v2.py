@@ -1,5 +1,5 @@
 from sentence_transformers import SentenceTransformer, util
-import batch_classifier as bc
+import batch_classifier_v2 as bc
  
 model = SentenceTransformer('all-MiniLM-L6-v2') 
 
@@ -19,18 +19,35 @@ sentencesOptimized = [
                       f"                  a total of {bc.rejectedPercentage}% damage makes the batch completely unsuitable.",
                       f"The percentage of apples with diseases is {bc.rejectedPercentage}.",
                       f"The complete batch consist of {bc.lp.sampleBatch} apples."
+                      f"The batch contains {bc.appleScore} normal apples."
                      ]
 
-print("\nA conversation with Apple Classifying chatbot: Botnita Applebum")  
+print("\n___A conversation with the Apple Classifying chatbot___\n"
+      "\n                  BOTNITA APPLEBUM\n"
+      "\n(type 'quit', 'stop' or 'exit' to leave, once you're done)\n")  
 
 def chatSbert(): 
     
     questions = 0
     
     while questions < 3:
-        query_embedding = input("\nBotnita Applebum: What would you like to know regarding the tested batch of apples?")
         
-        print("\nYou             :", query_embedding)
+        query_embedding = input("\nBotnita Applebum: What would you like to know regarding the tested batch of apples?\n")
+        # TO DO: QUERY SHOULD NOT BE REPEATED FOR EVERY SINGLE QUESTION
+        
+        if query_embedding.lower() == "quit":
+            # print("This terminal will self-destruct in 5, 4, 3 ...")
+            break
+        if query_embedding.lower() == "exit":
+            # print("Thank you for flying with Pink Lady airlines! Goodbye.")
+            break
+        if query_embedding.lower() == "stop":
+            # print("Stop, collaborate and listen...")
+            break
+    
+        
+        print("\nPink Lady employee:", query_embedding)
+        # TO DO: THE ANSWER SHOULD ONLY BE PRINTED ONCE
         
         embeddingsApples = model.encode(sentencesOptimized)
         
@@ -39,23 +56,21 @@ def chatSbert():
 
         answer_location = answer_array.argmax()
 
-        print("Botnita Applebum:", sentencesOptimized[answer_location.item()])
-        questions += 1
+        print("Botnita Applebum  :", sentencesOptimized[answer_location.item()])
+        questions += 1   
         
-    print("\nBotnita Applebum: Those are all the questions I can answer today, see you tomorrow!\n"
-          "\n                  And remember: An apple a day, keeps the doctor away!\n"
-          "                  (unless it is rotten, blotched or scabbed)\n") 
+        
+    print("\nBotnita Applebum  : Those are all the questions I can answer today, see you tomorrow!\n"
+          "\n                    And remember: An apple a day, keeps the doctor away!\n"
+          "                    (unless it is rotten, blotched or scabbed)\n") 
     
-
-chatSbert() 
-
 
 # IMPLEMENT RUNNABLE CODE INSIDE THIS MAIN 
-# def main():
-#     pass
+def main():
+    chatSbert()
     
-
 
 # DO NOT IMPLEMENT ANYTHING HERE
 if __name__ == "__main__":
-    chatSbert()   
+    main()
+ 
