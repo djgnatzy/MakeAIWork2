@@ -2,6 +2,7 @@
 
 # DEFINE IMPORTS HERE
 import nltk
+nltk.download("all")
 from nltk.stem.lancaster import LancasterStemmer
 stemmer = LancasterStemmer()
 
@@ -12,7 +13,7 @@ import random
 import json
 import pickle
 
-# import aql_apples.py
+import batch_classifier as bc
 
 with open("intents_apples.json") as file:
     data = json.load(file)
@@ -70,7 +71,6 @@ with open("intents_apples.json") as file:
     with open("data.pickle", "wb") as f:
         pickle.dump((words, labels, training, output), f)
 
-# tensorflow.reset_default_graph() < Depricated
 tensorflow.compat.v1.reset_default_graph()
 
 net = tflearn.input_data(shape=[None, len(training[0])])
@@ -102,45 +102,23 @@ def bag_of_words(s, words):
     return numpy.array(bag)
 
 
-sampleBatch = 80
-
-appleScore = 75
-blotchApple = 1
-rotApple = 1
-scabApple = 3
-rejectedApple = 5
-
-healthyPercentage = 93.5
-blotchPercentage = 1.25
-rotPercentage = 1.25
-scabPercentage = 2.5
-rejectedPercentage = 5
-
-classOne = "Class 1"
-classTwo = "Class 2"
-classThree = "Class 3"
-classRej = "Rejected"
-
 def replaceResponse(response):
     
-    response = response.replace("(sampleBatch)", f"{sampleBatch}")
-    response = response.replace("(appleScore)", f"{appleScore}")
-    response = response.replace("(blotchApple)", f"{blotchApple}")
-    response = response.replace("(scabApple)", f"{scabApple}")
-    response = response.replace("(rotApple)", f"{rotApple}")
-    response = response.replace("(rejectedApple)", f"{rejectedApple}")
+    response = response.replace("(sampleBatch)", f"{bc.lp.sampleBatch}")
+    response = response.replace("(appleScore)", f"{bc.appleScore}")
+    response = response.replace("(blotchApple)", f"{bc.blotchApple}")
+    response = response.replace("(scabApple)", f"{bc.scabApple}")
+    response = response.replace("(rotApple)", f"{bc.rotApple}")
+    response = response.replace("(rejectedApple)", f"{bc.rejectedApple}")
     
-    response = response.replace("(healthyPercentage)", f"{healthyPercentage}")
-    response = response.replace("(blotchPercentage)", f"{blotchPercentage}")
-    response = response.replace("(rotPercentage)", f"{rotPercentage}")
-    response = response.replace("(scabPercentage)", f"{scabPercentage}")
-    response = response.replace("(rejectedPercentage)", f"{rejectedPercentage}")
+    response = response.replace("(healthyPercentage)", f"{bc.healthyPercentage}")
+    response = response.replace("(blotchPercentage)", f"{bc.blotchPercentage}")
+    response = response.replace("(rotPercentage)", f"{bc.rotPercentage}")
+    response = response.replace("(scabPercentage)", f"{bc.scabPercentage}")
+    response = response.replace("(rejectedPercentage)", f"{bc.rejectedPercentage}")
 
-    response = response.replace("(classOne)", f"{classOne}")          # all to one variable
-    response = response.replace("(classTwo)", f"{classTwo}")
-    response = response.replace("(classThree)", f"{classThree}")
-    response = response.replace("(classRej)", f"{classRej}")
-    
+    response = response.replace("(classOne)", f"{bc.status}")          # all to one variable == done
+  
     return response
 
 def chatNLTK():
@@ -172,15 +150,13 @@ def chatNLTK():
 
         print(random.choice(responses))
 
-# chat()
-
 
 # IMPLEMENT RUNNABLE CODE INSIDE THIS MAIN 
-# def main():
-#     pass
+def main():
+    chatNLTK()   
     
 
 
 # DO NOT IMPLEMENT ANYTHING HERE
 if __name__ == "__main__":
-    chatNLTK()   
+    main()
