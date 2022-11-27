@@ -5,12 +5,15 @@ import os
 import shutil
 import random
 
+# LUKT (NOG) NIET OM DE AFBEELDINGEN IN DE NIEUW AANGEMAAKTE FOLDERS TE STOPPEN. 
+# AFBEELDINGEN EINDIGEN NU IN DE HOOFDFOLDER.
+
 def getBatch():
 
     origin = 'C:/MakeAIWork2/projects/apple_disease_classification/data/AQL_Data_in_Use/'
     parent_dir = "C:/MakeAIWork2/projects/apple_disease_classification/src/data/batches"
     
-    # target = 'C:/MakeAIWork2/projects/apple_disease_classification/src/data/batches/batch_04/'
+    # target = 'C:/MakeAIWork2/projects/apple_disease_classification/src/data/batches/batch_04/' ETC.
     
     directory = max([int(i) for i in os.listdir("C:/MakeAIWork2/projects/apple_disease_classification/src/data/batches/") + [0]])+1
     directory = f'{directory}'
