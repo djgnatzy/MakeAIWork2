@@ -10,12 +10,12 @@ import random
 
 def getBatch():
 
-    origin = 'C:/MakeAIWork2/projects/apple_disease_classification/data/AQL_Data_in_Use/'
-    parent_dir = "C:/MakeAIWork2/projects/apple_disease_classification/src/data/batches"
+    origin = '../original_data/AQL_Data_in_Use'
+    parent_dir = "../data"
     
     # target = 'C:/MakeAIWork2/projects/apple_disease_classification/src/data/batches/batch_04/' ETC.
     
-    directory = max([int(i) for i in os.listdir("C:/MakeAIWork2/projects/apple_disease_classification/src/data/batches/") + [0]])+1
+    directory = max([int(i) for i in os.listdir("./src/data/") + [0]])+1
     directory = f'{directory}'
     print("directory:", directory)
     path = os.path.join(parent_dir, directory)

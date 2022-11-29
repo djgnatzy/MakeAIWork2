@@ -16,22 +16,24 @@ os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 IMAGE_SIZE = 224
 BATCH_SIZE = 80
 
+# Dit bestand staat in de folder C:/MakeAIWork2/projects/apple_disease_classification/src/run  ... Relative Paths willen er niet aan ...
 
 trainedModel = tf.keras.models.load_model(
-    'C:\MakeAIWork2/projects/apple_disease_classification/models/33', 
+    './models/33', # met Relative Path: ../models/33 wordt er niets gevonden...
     custom_objects=None, 
     compile=True, 
     options=None
 )
 
 aql_dataset = tf.keras.utils.image_dataset_from_directory(
-      "C:/MakeAIWork2/projects/apple_disease_classification/src/data",
+      "./data",   # met Relative Path: ../data wordt er niets gevonden...
       shuffle=True,
       image_size=(IMAGE_SIZE, IMAGE_SIZE),
       batch_size = BATCH_SIZE,
       # labels=None
       )
 
+# Met volledige Paths: "Found 695 files belonging to 9 classes" Check!
 
 def getLabels():
     
