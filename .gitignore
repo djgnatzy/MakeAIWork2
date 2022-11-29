@@ -150,3 +150,9 @@ projects/apple_disease_classification/data/Use
 projects/apple_disease_classification/src/data
 report_images/
 projects/apple_disease_classification/src/data/Use
+projects/apple_disease_classification/original_data
+projects/apple_disease_classification/src/augmented_data
+projects/apple_disease_classification/src/aql_data
+projects/apple_disease_classification/david_gnatzy_p2.zip
+projects/apple_disease_classification/cnn_results_&_models.pdf
+projects/apple_disease_classification/chatbot_nltk_conversations_test.pdf
